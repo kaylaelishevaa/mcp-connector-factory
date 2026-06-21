@@ -27,29 +27,20 @@ included precisely to prove the skeleton is a template and not a one-off: the sa
 scaffolding shows up twice, wearing two different backends *and* two deliberately
 different security postures.
 
+```mermaid
+flowchart LR
+    C["Claude app<br/>Bearer token"]
+    C --> S["Hardened MCP skeleton<br/>~80-95% shared - forked per backend<br/>JSON-RPC 2.0 - bearer auth<br/>OAuth-2.0 facade - audit log<br/>Docker + Cloudflare tunnel"]
+    S --> L["lark_client"]
+    S --> W["web_client"]
+    L --> LB["Lark Bitable - SaaS<br/>writes LIVE - admin tier<br/>one kill switch + revision history"]
+    W --> WB["NestJS admin REST API<br/>read-only - writes dark<br/>two kill switches - dry-run default"]
+    classDef live fill:#fdebd0,stroke:#b9770e,color:#000;
+    classDef readonly fill:#d5f5e3,stroke:#1e8449,color:#000;
+    class LB live
+    class WB readonly
 ```
-                         ┌───────────────────────────────────┐
-   Claude app ──MCP──▶   │   HARDENED MCP SKELETON (~80–95%    │
-   (Bearer token)        │   identical across both forks)     │
-                         │   • JSON-RPC 2.0: initialize /      │
-                         │     tools/list / tools/call         │
-                         │   • bearer auth (constant-time)     │
-                         │   • OAuth-2.0 facade for Claude UI  │
-                         │   • JSON-line audit logging         │
-                         │   • Docker + Cloudflare tunnel      │
-                         └──────────────┬────────────────────┘
-                    fork per backend ───┴───────────────┐
-                            │                            │
-                ┌───────────▼───────────┐    ┌───────────▼────────────┐
-                │  lark_client → Lark    │    │  web_client → NestJS    │
-                │  Bitable (SaaS API)    │    │  admin REST API         │
-                ├────────────────────────┤    ├─────────────────────────┤
-                │ POSTURE: writes LIVE,  │    │ POSTURE: read-only;     │
-                │ admin tier, 1 kill     │    │ writes dark behind TWO  │
-                │ switch. Net: audit log │    │ kill switches + dry-run │
-                │ + Lark revision hist.  │    │ default. (3rd DB writer)│
-                └────────────────────────┘    └─────────────────────────┘
-```
+
 
 The skeleton bundles the parts that are annoying to get right and identical every
 time:
