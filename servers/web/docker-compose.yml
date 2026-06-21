@@ -1,0 +1,31 @@
+services:
+  web-mcp:
+    build: .
+    image: cb-web-mcp-server:local
+    container_name: web-mcp
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data
+    restart: unless-stopped
+    # Internal port only; cloudflared exposes via tunnel.
+    expose:
+      - "8081"
+    # For local debug, expose to host as well:
+    # ports:
+    #   - "127.0.0.1:8081:8081"
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: web-mcp-tunnel
+    restart: unless-stopped
+    env_file:
+      - .env
+    # Named (remotely-managed) tunnel → stable URL e.g. https://web-mcp.example.com.
+    # The tunnel + its public hostname (→ http://web-mcp:8081) are configured in
+    # the Cloudflare Zero Trust dashboard; CF_TUNNEL_TOKEN authenticates this
+    # connector. Ephemeral fallback: replace the command with
+    #   tunnel --no-autoupdate --url http://web-mcp:8081
+    command: tunnel --no-autoupdate run --token ${CF_TUNNEL_TOKEN}
+    depends_on:
+      - web-mcp

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 348" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">
+  <!-- panel -->
+  <rect x="0.5" y="0.5" width="1023" height="347" rx="4" fill="#F5F3EF" stroke="#E6E2DA"/>
+
+  <!-- column headers -->
+  <g fill="#A29C92" font-size="11" letter-spacing="1.7" font-weight="500">
+    <text x="36"  y="44">CLIENT</text>
+    <text x="288" y="44">SHARED SKELETON</text>
+    <text x="540" y="44">FORK</text>
+    <text x="792" y="44">BACKEND · POSTURE</text>
+  </g>
+
+  <!-- arrows -->
+  <g fill="#BEB9AE" font-size="20" text-anchor="middle">
+    <text x="260" y="182">&#8594;</text>
+    <text x="512" y="182">&#8594;</text>
+    <text x="764" y="182">&#8594;</text>
+  </g>
+
+  <!-- ===== CLIENT (x=36) ===== -->
+  <g>
+    <rect x="36" y="62" width="196" height="60" rx="3" fill="#FCFBF9" stroke="#D9D5CC"/>
+    <text x="51" y="87"  fill="#2A2A28" font-size="14">Claude app</text>
+    <text x="51" y="105" fill="#9A948B" font-size="9.5" letter-spacing="0.5">CUSTOM CONNECTOR</text>
+
+    <rect x="36" y="138" width="196" height="60" rx="3" fill="#FCFBF9" stroke="#D9D5CC"/>
+    <text x="51" y="163" fill="#2A2A28" font-size="14">Bearer token</text>
+    <text x="51" y="181" fill="#9A948B" font-size="9.5" letter-spacing="0.5">PASTED AS "SECRET"</text>
+  </g>
+
+  <!-- ===== SHARED SKELETON (x=288) ===== -->
+  <g>
+    <rect x="288" y="62" width="196" height="60" rx="3" fill="#FCFBF9" stroke="#D9D5CC"/>
+    <text x="303" y="87"  fill="#2A2A28" font-size="14">JSON-RPC 2.0</text>
+    <text x="303" y="105" fill="#9A948B" font-size="9.5" letter-spacing="0.5">INIT · LIST · CALL</text>
+
+    <rect x="288" y="138" width="196" height="60" rx="3" fill="#FCFBF9" stroke="#D9D5CC"/>
+    <text x="303" y="163" fill="#2A2A28" font-size="14">Auth + OAuth facade</text>
+    <text x="303" y="181" fill="#9A948B" font-size="9.5" letter-spacing="0.5">BEARER · CONST-TIME</text>
+
+    <rect x="288" y="214" width="196" height="60" rx="3" fill="#FCFBF9" stroke="#D9D5CC"/>
+    <text x="303" y="239" fill="#2A2A28" font-size="14">Audit log</text>
+    <text x="303" y="257" fill="#9A948B" font-size="9.5" letter-spacing="0.5">JSON-LINE · BEFORE/AFTER</text>
+  </g>
+
+  <!-- ===== FORK (x=540) ===== -->
+  <g>
+    <rect x="540" y="62" width="196" height="60" rx="3" fill="#FCFBF9" stroke="#D9D5CC"/>
+    <text x="555" y="87"  fill="#2A2A28" font-size="14">lark_client</text>
+    <text x="555" y="105" fill="#9A948B" font-size="9.5" letter-spacing="0.5">FETCH-ALL + FILTER</text>
+
+    <rect x="540" y="138" width="196" height="60" rx="3" fill="#FCFBF9" stroke="#D9D5CC"/>
+    <text x="555" y="163" fill="#2A2A28" font-size="14">web_client</text>
+    <text x="555" y="181" fill="#9A948B" font-size="9.5" letter-spacing="0.5">JWT LOGIN-REFRESH</text>
+  </g>
+
+  <!-- ===== BACKEND · POSTURE (x=792) ===== -->
+  <g>
+    <rect x="792" y="62" width="196" height="60" rx="3" fill="#FCFBF9" stroke="#D9D5CC"/>
+    <rect x="792" y="62" width="2" height="60" fill="#2A2A28"/>
+    <text x="807" y="87"  fill="#2A2A28" font-size="14">Lark Bitable</text>
+    <text x="807" y="105" fill="#9A948B" font-size="9.5" letter-spacing="0.5">WRITES LIVE · ADMIN</text>
+
+    <rect x="792" y="138" width="196" height="60" rx="3" fill="#FCFBF9" stroke="#D9D5CC"/>
+    <rect x="792" y="138" width="2" height="60" fill="#2A2A28"/>
+    <text x="807" y="163" fill="#2A2A28" font-size="14">NestJS REST API</text>
+    <text x="807" y="181" fill="#9A948B" font-size="9.5" letter-spacing="0.5">READ-ONLY · 2 SWITCHES</text>
+  </g>
+
+  <!-- caption -->
+  <text x="36" y="312" fill="#6B675F" font-size="12" letter-spacing="0.3">One hardened skeleton, forked per backend — same code, two deliberately different security postures.</text>
+</svg>
